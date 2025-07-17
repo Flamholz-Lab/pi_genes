@@ -1,0 +1,30 @@
+﻿name,function,function_type,nutrient,query,query_type,domain,query_date,query_server,notes
+K01077,alkaline_phosphatase,Pi_acquisition,P,K01077,KEGG,bacteria,7/11/25,annotree_beta,
+K01113,alkaline_phosphatase,Pi_acquisition,P,K01113,KEGG,bacteria,7/11/25,annotree_beta,
+K01093,acid_phosphatase,Pi_acquisition,P,K01093,KEGG,bacteria,7/11/25,annotree_beta,
+K09474,acid_phosphatase,Pi_acquisition,P,K09474,KEGG,bacteria,7/11/25,annotree_beta,
+K03788,acid_phosphatase,Pi_acquisition,P,K03788,KEGG,bacteria,7/11/25,annotree_beta,
+K06163,CP_lyase,phosphonate_acquisition,P,K06163,KEGG,bacteria,7/11/25,annotree_beta,phnJ
+K06164,CP_lyase,phosphonate_acquisition,P,K06164,KEGG,bacteria,7/11/25,annotree_beta,phnI
+K06165,CP_lyase,phosphonate_acquisition,P,K06165,KEGG,bacteria,7/11/25,annotree_beta,phnH
+K06166,CP_lyase,phosphonate_acquisition,P,K06166,KEGG,bacteria,7/11/25,annotree_beta,phnG
+K02274,term_oxidase,O2_energetics,O,K02274,KEGG,bacteria,7/16/25,annotree_beta,HCO coxA
+K00404,term_oxidase,O2_energetics,O,K00404,KEGG,bacteria,7/16/25,annotree_beta,HCO ccoN
+K00425,term_oxidase,O2_energetics,O,K00425,KEGG,bacteria,7/16/25,annotree_beta,BD cydA
+K07226,heme_oxygenase,O2_utilization,O,K07226,KEGG,bacteria,7/16/25,annotree_beta,
+K07215,heme_oxygenase,O2_utilization,O,K07215,KEGG,bacteria,7/16/25,annotree_beta,
+K21480,heme_oxygenase,O2_utilization,O,K21480,KEGG,bacteria,7/16/25,annotree_beta,
+K21481,heme_oxygenase,O2_utilization,O,K21481,KEGG,bacteria,7/16/25,annotree_beta,
+K07145,heme_oxygenase,O2_utilization,O,K07145,KEGG,bacteria,7/16/25,annotree_beta,
+K03919,DNA_ox_demethylase,O2_utilization,O,K03919,KEGG,bacteria,7/16/25,annotree_beta,
+K00491,nitric_oxide_syn,O2_utilization,O,K00491,KEGG,bacteria,7/16/25,annotree_beta,
+K00451,homogentisate_diox,O2_utilization,O,K00451,KEGG,bacteria,7/16/25,annotree_beta,
+K08967,acireductone_diox,O2_utilization,O,K08967,KEGG,bacteria,7/16/25,annotree_beta,
+K00372,nitrogen_uptake,N_uptake,N,K00491,KEGG,bacteria,7/16/25,annotree_beta,
+K00366,fd_NO2_red,denitrification,N,K00451,KEGG,bacteria,7/16/25,annotree_beta,
+K00370,NO3_reductase,denitrification,N,K08967,KEGG,bacteria,7/16/25,annotree_beta,
+K02567,NO3_reductase,denitrification,N,K00491,KEGG,bacteria,7/16/25,annotree_beta,
+K15864,NO2_reductase,denitrification,N,K00451,KEGG,bacteria,7/16/25,annotree_beta,
+K00368,NO2_reductase,denitrification,N,K08967,KEGG,bacteria,7/16/25,annotree_beta,
+K10944,AMO,nitrification,N,K08967,KEGG,bacteria,7/16/25,annotree_beta,
+K10535,hydroxylamine_dehyd,nitrification,N,K08967,KEGG,bacteria,7/16/25,annotree_beta,
