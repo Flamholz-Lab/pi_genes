@@ -46,3 +46,12 @@ PhnGHIJ is the core complex of coli C-P lyase identified structurally in Seweryn
 # Ammonia oxidation 
 * K10944 - methane/ammonia monooxygenase subunit A
 * K10535 - hydroxylamine dehydrogenase
+
+# Fermentation
+* K00016 - L-lactate dehydrogenase 
+* K03778 - D-lactate dehydrogenase
+* K00656 - pyruvate formate lyase
+* K00925 - acetate kinase (virtually universal)
+* K00625 - phosphate acetyltransferase
+* K13788 - phosphate acetyltransferase (second one)
+* K00123 - formate hydrogen lyase major subunit
