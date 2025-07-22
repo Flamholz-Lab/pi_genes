@@ -29,8 +29,8 @@ LOCAL_GTDB_FNAMES = [path.join(LOCAL_GTDB_DIR, n) for n in GTDB_FILENAMES2FETCH]
 LOCAL_GTDB_FNAMES = [n.strip('.gz') for n in LOCAL_GTDB_FNAMES]  # gonna unzip them
 GTDB_BAC_METADATA, GTDB_BAC_TREE, GTDB_ARC_METADATA, GTDB_ARC_TREE = LOCAL_GTDB_FNAMES
 
-annotree_manifest = "data/annotree/annotree_manifest.csv"
-annotree_manifest_df = pd.read_csv(annotree_manifest).dropna(how='all')
+annotree_manifest_fname = "data/annotree/annotree_manifest.csv"
+annotree_manifest_df = pd.read_csv(annotree_manifest_fname).dropna(how='all')
 ANNOTREE_QS = tuple(annotree_manifest_df["query"].unique())
 ANNOTREE_NAMES = tuple(annotree_manifest_df["name"].unique())
 print(annotree_manifest_df)
@@ -49,7 +49,6 @@ rule all:
     input:
         gtdb_data=LOCAL_GTDB_FNAMES,
         gtdb_stats="output/gtdb_phylo_stats.csv",
-        pi_funcs_by_organism="output/gene_funcs_by_organism.csv",
         itol_bac_tree=expand("output/itol_bac_{nutrient}_phylum.txt", nutrient=NUTRIENTS)
 
 # Fetch the GTDB metadata and tree for the version specified
@@ -72,25 +71,25 @@ rule calc_gtdb_stats:
     shell:
         "python scripts/gtdb2stats.py --representatives_only -b {input.bacteria} -a {input.archaea} -o {output}"
 
-rule calc_pi_funcs_by_organism:
+rule calc_genes_by_organism:
     input:
-        manifest=annotree_manifest,
+        annotree_manifest_fname,
     output:
-        outdir="intermediate/annotree/",
-        wide_output="genes_by_organism.csv",
+        wide="intermediate/annotree/genes_by_organism.csv",
+        long="intermediate/annotree/genes_long.csv",
     shell:
-        "python scripts/tabulate_gene_funcs.py --manifest {input.manifest} "
-        "--outdir {output.outdir} --outfname {output.wide_output}"
+        "python scripts/tabulate_gene_funcs.py --manifest {input} "
+        "--out_long {output.long} --out_wide {output.wide}"
 
 rule apply_boolean_expressions:
     input:
         genes_by_organism="intermediate/annotree/genes_by_organism.csv",
         expressions_fname="data/annotree/annotree_expressions.csv"
     output:
-        outdir="intermediate/annotree/",
-        nutrient_outputs=expand("intermediate/annotree/{nutrient}_functional_results.csv", nutrient=NUTRIENTS)
+        nutrient_outputs=expand("intermediate/annotree/{nutrient}_functional_results.csv", nutrient=NUTRIENTS),
     shell:
-        "python scripts/apply_expressions.py --input {input.genes_by_organism} --expressions {input.expressions_fname} --outdir {output.outdir}"
+        "python scripts/apply_expressions.py --input {input.genes_by_organism} "
+        "--expressions {input.expressions_fname} --outdir intermediate/annotree/"
 
 rule make_itol_tree:
     input: 
