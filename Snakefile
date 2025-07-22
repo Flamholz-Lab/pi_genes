@@ -80,7 +80,7 @@ rule calc_genes_by_organism:
         wide="intermediate/annotree/genes_by_organism.csv",
         long="intermediate/annotree/genes_long.csv",
     shell:
-        "python scripts/tabulate_gene_by_organism.py --manifest {input} "
+        "python scripts/tabulate_genes_by_organism.py --manifest {input} "
         "--out_long {output.long} --out_wide {output.wide}"
 
 rule apply_boolean_expressions:
