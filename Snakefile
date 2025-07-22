@@ -43,13 +43,19 @@ annotree_manifest_df = annotree_manifest_df.set_index("domain,query".split(','))
 
 NUTRIENTS = annotree_manifest_df.nutrient.unique()
 
-
 # Demands final output is compiled
 rule all:
     input:
         gtdb_data=LOCAL_GTDB_FNAMES,
         gtdb_stats="output/gtdb_phylo_stats.csv",
         itol_bac_tree=expand("output/itol_bac_{nutrient}_phylum.txt", nutrient=NUTRIENTS)
+
+# Clean up prior run
+rule clean:
+    shell:
+        """
+        rm -rf output/* intermediate/annotree/*
+        """
 
 # Fetch the GTDB metadata and tree for the version specified
 rule fetch_gtdb:
