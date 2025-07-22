@@ -20,7 +20,7 @@ class BooleanExpressionParser:
         ParserElement.enablePackrat()
 
         # Define the parser
-        self.GENE = Word(alphanums)
+        self.GENE = Word(alphanums + "_:.-")
         self.AND = Keyword("AND")
         self.OR = Keyword("OR")
         self.NOT = Keyword("NOT")
@@ -103,11 +103,16 @@ class TestBooleanExpressions(unittest.TestCase):
             ("gene1 AND gene3 OR NOT gene2", True),
             ("(gene1 OR gene2) OR (gene3 AND NOT gene4)", True),
             ("(gene1 OR gene2) AND (gene3 AND gene4)", False),
+            ("gene1 OR gene2 OR gene3 OR gene4", True),
+            ("gene1 AND gene2 AND gene3 and gene4", False),
+            ("(gene1 AND gene2) OR (gene3 AND gene4)", False),
+            ("NOT (gene1 AND gene2)", True),
+            ("NOT (gene1 OR gene2)", False),
         ]
         for expr_str, expected in strings_and_results:
             parsed = self.parser.parse_expression(expr_str)
             result = self.parser.evaluate(parsed, gene_row)
-            self.assertEqual(result, expected)
+            self.assertEqual(result, expected, f"Failed for expression: {expr_str}")
 
 if __name__ == "__main__":
     unittest.main()

@@ -21,6 +21,8 @@ def main():
     parser = BooleanExpressionParser()
     for function_name, row in expressions_df.iterrows():
         parsed = parser.parse_expression(row['boolean_expression'])
+        print(f"Applying expression for {function_name}: {row['boolean_expression']}")
+        print(f"Parsed expression: {parsed.as_list()}")
 
         gene_data_df[function_name] = gene_data_df.apply(
             lambda row: parser.evaluate(parsed, row), axis=1
