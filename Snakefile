@@ -62,6 +62,7 @@ rule fetch_gtdb:
         "for url in {GTDB_PATHS2FETCH}; do curl -O \"$url\"; done && "
         "gunzip -f *.gz"
 
+# Calculates phylogenetic statistics from GTDB metadata
 rule calc_gtdb_stats:
     input:
         bacteria=GTDB_BAC_METADATA,
@@ -71,6 +72,7 @@ rule calc_gtdb_stats:
     shell:
         "python scripts/gtdb2stats.py --representatives_only -b {input.bacteria} -a {input.archaea} -o {output}"
 
+# Tabulates gene functions by organism from the annotree manifest
 rule calc_genes_by_organism:
     input:
         annotree_manifest_fname,
@@ -78,7 +80,7 @@ rule calc_genes_by_organism:
         wide="intermediate/annotree/genes_by_organism.csv",
         long="intermediate/annotree/genes_long.csv",
     shell:
-        "python scripts/tabulate_gene_funcs.py --manifest {input} "
+        "python scripts/tabulate_gene_by_organism.py --manifest {input} "
         "--out_long {output.long} --out_wide {output.wide}"
 
 rule apply_boolean_expressions:
